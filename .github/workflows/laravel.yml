@@ -22,11 +22,12 @@ jobs:
         with:
           php-version: ${{ env.PHP_VERSION }}
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
-          coverage: none
+          coverage: xdebug   # 🔹 Adiciona Xdebug para cobertura
 
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Cache do Composer
       - name: Get Composer cache directory
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
@@ -38,22 +39,26 @@ jobs:
           key: ${{ runner.os }}-php-${{ env.PHP_VERSION }}-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-php-${{ env.PHP_VERSION }}-
 
+      # Instala dependências
       - name: Install dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
+      # Configura Laravel
       - name: Setup application environment
         run: |
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           php artisan key:generate
           chmod -R 777 storage bootstrap/cache
 
+      # Cria banco SQLite para testes
       - name: Setup test database
         run: |
           mkdir -p database
           touch ${{ env.DB_DATABASE }}
 
+      # Executa os testes
       - name: Execute tests
         env:
           DB_CONNECTION: ${{ env.DB_CONNECTION }}
           DB_DATABASE: ${{ env.DB_DATABASE }}
-        run: php artisan test
+        run: php artisan test --coverage-text --coverage-html=tests/report/html-coverage
