@@ -28,10 +28,10 @@ class CategoryControllerTest extends TestCase
             ->assertExactJson([
                 'errors' => [
                     'name' => [
-                        'The name field is required.'
-                    ]
+                        'The name field is required.',
+                    ],
                 ],
-                'message' => 'The name field is required.'
+                'message' => 'The name field is required.',
             ]);
     }
 

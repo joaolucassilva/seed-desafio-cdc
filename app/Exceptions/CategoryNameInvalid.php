@@ -6,7 +6,4 @@ namespace App\Exceptions;
 
 use Exception;
 
-class CategoryNameInvalid extends Exception
-{
-
-}
+class CategoryNameInvalid extends Exception {}

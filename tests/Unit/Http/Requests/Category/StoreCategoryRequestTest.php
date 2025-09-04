@@ -14,7 +14,7 @@ class StoreCategoryRequestTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->request = new StoreCategoryRequest();
+        $this->request = new StoreCategoryRequest;
     }
 
     public function test_authorize(): void

@@ -16,8 +16,7 @@ class CategoryController extends Controller
 {
     public function __construct(
         private readonly StoreCategoryAction $storeCategoryAction,
-    ) {
-    }
+    ) {}
 
     public function store(StoreCategoryRequest $request): JsonResponse
     {
@@ -29,19 +28,19 @@ class CategoryController extends Controller
             return response()->json([
                 'errors' => [
                     'name' => [
-                        'The name field is required.'
+                        'The name field is required.',
                     ],
                 ],
-                'message' => 'The name field is required.'
+                'message' => 'The name field is required.',
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         } catch (CategoryException) {
             return response()->json([
                 'errors' => [
                     'name' => [
-                        'Category already exists'
+                        'Category already exists',
                     ],
                 ],
-                'message' => 'Category already exists'
+                'message' => 'Category already exists',
             ], Response::HTTP_BAD_REQUEST);
         }
     }

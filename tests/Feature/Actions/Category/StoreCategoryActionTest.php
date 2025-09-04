@@ -16,12 +16,13 @@ class StoreCategoryActionTest extends TestCase
     use RefreshDatabase;
 
     private Category $categoryModel;
+
     private StoreCategoryAction $action;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $categoryModel = new Category();
+        $categoryModel = new Category;
         $this->action = new StoreCategoryAction($categoryModel);
     }
 
@@ -52,5 +53,4 @@ class StoreCategoryActionTest extends TestCase
         $this->expectException(CategoryException::class);
         $this->action->__invoke('Test');
     }
-
 }

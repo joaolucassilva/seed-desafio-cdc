@@ -12,8 +12,7 @@ class StoreCategoryAction
 {
     public function __construct(
         private readonly Category $categoryModel,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws CategoryNameInvalid

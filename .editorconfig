@@ -3,16 +3,44 @@ root = true
 [*]
 charset = utf-8
 end_of_line = lf
-indent_size = 4
 indent_style = space
+indent_size = 4
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+# Markdown não deve remover espaços no final (útil pra quebras de linha)
 [*.md]
 trim_trailing_whitespace = false
 
+# YAML (configs e workflows) geralmente usam 2 espaços
 [*.{yml,yaml}]
 indent_size = 2
 
+# Docker Compose especificamente costuma usar 2 ou 4 → aqui deixei 2
 [docker-compose.yml]
+indent_size = 2
+
+# PHP, Blade e configs Laravel
+[*.{php,blade.php}]
 indent_size = 4
+max_line_length = 120
+
+# JSON (package.json, composer.json, etc.)
+[*.json]
+indent_size = 2
+
+# CSS, SCSS e PostCSS
+[*.{css,scss,pcss}]
+indent_size = 2
+
+# JavaScript e TypeScript
+[*.{js,jsx,ts,tsx}]
+indent_size = 2
+
+# HTML e XML
+[*.{html,xml}]
+indent_size = 2
+
+# Makefile exige TAB (não espaço)
+[Makefile]
+indent_style = tab

@@ -20,6 +20,6 @@ class Category extends Model
 
     protected static function newFactory(): CategoryFactory
     {
-        return new CategoryFactory();
+        return new CategoryFactory;
     }
 }
