@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Author\AuthorController;
+use App\Http\Controllers\Book\BookController;
 use App\Http\Controllers\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,3 +14,7 @@ Route::resource('authors', AuthorController::class)
 Route::resource('categories', CategoryController::class)
     ->only(['store'])
     ->names('categories');
+
+Route::resource('books', BookController::class)
+    ->only(['store'])
+    ->names('books');
